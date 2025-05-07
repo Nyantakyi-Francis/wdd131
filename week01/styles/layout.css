@@ -1,0 +1,58 @@
+/* Apply CSS Grid layout to body */
+body {
+    display: grid;
+    grid-template-areas:
+      "header header"
+      "main aside"
+      "footer footer";
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    gap: 1rem;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 1rem;
+  }
+  
+  /* Assign grid areas */
+  header {
+    grid-area: header;
+    background-color: #f8f8f8;
+    padding: 1rem;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  main {
+    grid-area: main;
+    background-color: #ffffff;
+    padding: 1rem;
+  }
+  
+  aside {
+    grid-area: aside;
+    background-color: #f0f0f0;
+    padding: 1rem;
+  }
+  
+  footer {
+    grid-area: footer;
+    background-color: #ddd;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  /* Flexbox on nav */
+  nav .nav-menu {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
