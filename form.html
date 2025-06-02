@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Product Review Form</title>
-  <link rel="stylesheet" href="styles/form.css">
+  <meta name="description" content="A product review form for submitting feedback about selected items.">
+  <meta name="author" content="Francis Nyantakyi">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/form.css">
   <script src="scripts/form.js" defer></script>
 </head>
 <body>
@@ -37,6 +40,7 @@
         <label><input type="checkbox" id="feature1" name="features" value="Easy Installation"> Easy Installation</label>
         <label><input type="checkbox" id="feature2" name="features" value="High Performance"> High Performance</label>
         <label><input type="checkbox" id="feature3" name="features" value="Durability"> Durability</label>
+        <label><input type="checkbox" id="feature4" name="features" value="Energy Efficient"> Energy Efficient</label>
       </fieldset>
 
       <label for="review">Written Review</label>
@@ -45,13 +49,13 @@
       <label for="user-name">Your Name</label>
       <input type="text" id="user-name" name="userName">
 
-      <input type="submit" value="Submit Review">
+      <input type="submit" value="Submit">
     </form>
   </main>
 
-    <footer>
-        <p>&copy; <span id="currentyear"></span> Francis Nyantakyi, Ghana</p>
-        <p id="lastModified"></p>
-    </footer>
+  <footer>
+    <p>&copy; <span id="currentyear"></span> Francis Nyantakyi, Ghana</p>
+    <p id="lastModified"></p>
+  </footer>
 </body>
 </html>
