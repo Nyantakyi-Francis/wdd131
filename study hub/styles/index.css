@@ -1,0 +1,15 @@
+/* Global Styles for StudyHub */
+
+/* Google Fonts for Segoe UI (or a similar sans-serif fallback if Segoe UI is not available via CDN easily) */
+/* Note: Segoe UI is primarily a system font. For web consistency, a font like Inter (as per general instructions) or a similar-looking Google Font is often used as a primary web font, with Segoe UI as a fallback. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/* Custom styles to ensure Segoe UI is prioritized, falling back to Inter or generic sans-serif */
+body {
+  font-family: "Segoe UI", "Inter", sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Segoe UI", "Inter", sans-serif; /* Segoe UI Bold would be handled by font-bold in Tailwind */
+}
+
+/* Any other global custom CSS not covered by Tailwind */

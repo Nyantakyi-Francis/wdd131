@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyHub - Past Questions Archive</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="styles/index.css">
+</head>
+<body class="bg-[#f9fafa] text-gray-800 antialiased min-h-screen flex flex-col">
+
+  <!-- Header - Re-used for consistent navigation -->
+  <header class="bg-[#0a66c2] text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold rounded-md hover:opacity-90 transition-opacity">StudyHub</a>
+      <nav class="hidden md:flex space-x-6">
+        <a href="index.html" class="hover:text-[#f39c12] transition-colors font-semibold">Home</a>
+        <a href="past-questions.html" class="hover:text-[#f39c12] transition-colors font-semibold">Past Questions</a>
+        <a href="study-planner.html" class="hover:text-[#f39c12] transition-colors font-semibold">Study Planner</a>
+      </nav>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay (Hidden by default) -->
+  <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-[#0a66c2] bg-opacity-95 z-50 flex flex-col items-center justify-center space-y-8">
+    <button id="close-menu-button" class="absolute top-4 right-4 text-white focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <a href="index.html" class="text-white text-3xl font-semibold hover:text-[#f39c12] transition-colors">Home</a>
+    <a href="past-questions.html" class="text-white text-3xl font-semibold hover:text-[#f39c12] transition-colors">Past Questions</a>
+    <a href="study-planner.html" class="text-white text-3xl font-semibold hover:text-[#f39c12] transition-colors">Study Planner</a>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-grow container mx-auto p-4 md:p-8">
+    <section class="bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-[#0a66c2] mb-6 text-center">
+        Past Questions Archive
+      </h1>
+      <p class="text-lg text-gray-700 text-center mb-8">
+        Search for past BECE and WASSCE questions by subject, year, or topic. Each question comes with detailed explanations to aid your understanding.
+      </p>
+
+      <!-- Search Form -->
+      <form id="question-search-form" class="mb-10 p-6 bg-gray-50 rounded-lg shadow-inner">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label for="exam-type" class="block text-gray-700 text-sm font-bold mb-2">Exam Type:</label>
+            <select id="exam-type" name="examType" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#f39c12]">
+              <option value="">Select Exam</option>
+              <option value="BECE">BECE</option>
+              <option value="WASSCE">WASSCE</option>
+            </select>
+          </div>
+          <div>
+            <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Subject:</label>
+            <select id="subject" name="subject" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#f39c12]">
+              <option value="">Select Subject</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="English Language">English Language</option>
+              <option value="Science">Integrated Science</option>
+              <option value="Social Studies">Social Studies</option>
+              <option value="History">History</option>
+              <option value="Economics">Economics</option>
+            </select>
+          </div>
+          <div>
+            <label for="year" class="block text-gray-700 text-sm font-bold mb-2">Year:</label>
+            <input type="number" id="year" name="year" min="2000" max="2025" placeholder="e.g., 2020" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#f39c12]">
+          </div>
+        </div>
+        <div class="mt-8 text-center">
+          <button type="submit" class="bg-[#f39c12] text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-opacity-90 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-[#f39c12]">
+            Search Questions
+          </button>
+        </div>
+      </form>
+
+      <!-- Search Results Area -->
+      <section id="search-results" class="bg-gray-50 rounded-xl shadow-inner p-6">
+        <h2 class="text-2xl font-bold text-[#0a66c2] mb-4">Search Results</h2>
+        <div id="questions-list" class="space-y-6">
+          <p class="text-gray-600 text-center" id="no-results-message">Use the form above to search for past questions.</p>
+          <!-- Sample Question Card (hidden by default, cloned for actual results) -->
+          <div class="hidden bg-white rounded-lg shadow p-4 border border-gray-200" id="sample-question-card">
+            <h3 class="text-xl font-semibold text-[#0a66c2] mb-2" data-question-title></h3>
+            <p class="text-gray-700 text-sm mb-2" data-question-meta></p>
+            <p class="text-gray-800 mb-4" data-question-text></p>
+            <div class="explanation-toggle">
+              <button class="bg-[#f39c12] text-white px-4 py-2 rounded-md text-sm hover:bg-opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-[#f39c12]" data-toggle-explanation-button>
+                Show Explanation
+              </button>
+              <div class="explanation hidden mt-4 bg-gray-100 p-3 rounded-md border border-gray-300">
+                <p class="text-gray-700" data-question-explanation></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+ <!-- Footer -->
+  <footer class="bg-[#0a66c2] text-white p-6 text-center shadow-inner mt-auto">
+    <div class="container mx-auto">
+      <p>&copy; <span id="currentyear"></span> Nyantakyi Francis, Ashanti Region - Ghana</p>
+      <p id="lastModified" class="mt-2 text-sm"></p>
+      <div class="flex justify-center space-x-6 mt-4">
+        <a href="#" class="hover:text-[#f39c12] transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-[#f39c12] transition-colors">Terms of Service</a>
+        <a href="references.html" class="hover:text-[#f39c12] transition-colors">References</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Link to external JavaScript file -->
+  <script src="scripts/index.js"></script>
+</body>
+</html>

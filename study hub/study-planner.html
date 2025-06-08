@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyHub - Smart Study Planner</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="styles/index.css">
+</head>
+<body class="bg-[#f9fafa] text-gray-800 antialiased min-h-screen flex flex-col">
+
+  <!-- Header - Re-used for consistent navigation -->
+  <header class="bg-[#0a66c2] text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold rounded-md hover:opacity-90 transition-opacity">StudyHub</a>
+      <nav class="hidden md:flex space-x-6">
+        <a href="index.html" class="hover:text-[#f39c12] transition-colors font-semibold">Home</a>
+        <a href="past-questions.html" class="hover:text-[#f39c12] transition-colors font-semibold">Past Questions</a>
+        <a href="study-planner.html" class="hover:text-[#f39c12] transition-colors font-semibold">Study Planner</a>
+      </nav>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay (Hidden by default) -->
+  <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-[#0a66c2] bg-opacity-95 z-50 flex flex-col items-center justify-center space-y-8">
+    <button id="close-menu-button" class="absolute top-4 right-4 text-white focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <a href="index.html" class="text-white text-3xl font-semibold hover:text-[#f39c12] transition-colors">Home</a>
+    <a href="past-questions.html" class="text-white text-3xl font-semibold hover:text-[#f39c12] transition-colors">Past Questions</a>
+    <a href="study-planner.html" class="text-white text-3xl font-semibold hover:text-[#f39c12] transition-colors">Study Planner</a>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-grow container mx-auto p-4 md:p-8">
+    <section class="bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-[#0a66c2] mb-6 text-center">
+        Smart Study Planner
+      </h1>
+      <p class="text-lg text-gray-700 text-center mb-8">
+        Create and manage your daily or weekly study timetable. Stay organized, track your progress, and achieve your academic goals!
+      </p>
+
+      <!-- Study Task Form -->
+      <form id="study-task-form" class="mb-10 p-6 bg-gray-50 rounded-lg shadow-inner">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="task-name" class="block text-gray-700 text-sm font-bold mb-2">Task Name:</label>
+            <input type="text" id="task-name" name="taskName" placeholder="e.g., Mathematics - Algebra Review" required class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#f39c12]">
+          </div>
+          <div>
+            <label for="task-subject" class="block text-gray-700 text-sm font-bold mb-2">Subject:</label>
+            <input type="text" id="task-subject" name="taskSubject" placeholder="e.g., Mathematics" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#f39c12]">
+          </div>
+          <div>
+            <label for="task-date" class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
+            <input type="date" id="task-date" name="taskDate" required class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#f39c12]">
+          </div>
+          <div>
+            <label for="task-time" class="block text-gray-700 text-sm font-bold mb-2">Time (Optional):</label>
+            <input type="time" id="task-time" name="taskTime" class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#f39c12]">
+          </div>
+        </div>
+        <div class="mt-8 text-center">
+          <button type="submit" class="bg-[#f39c12] text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-opacity-90 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-[#f39c12]">
+            Add Study Task
+          </button>
+        </div>
+      </form>
+
+      <!-- Study Plan Display Area -->
+      <section id="study-plan-display" class="bg-gray-50 rounded-xl shadow-inner p-6">
+        <h2 class="text-2xl font-bold text-[#0a66c2] mb-4">Your Study Plan</h2>
+        <div id="study-tasks-list" class="space-y-4">
+          <p class="text-gray-600 text-center" id="no-tasks-message">No tasks added yet. Use the form above to create your study plan.</p>
+          <!-- Sample Task Card (hidden by default, cloned for actual tasks) -->
+          <div class="hidden bg-white rounded-lg shadow p-4 border border-gray-200 flex flex-col md:flex-row items-start md:items-center justify-between" id="sample-task-card" data-task-id>
+            <div>
+              <h3 class="text-xl font-semibold text-[#0a66c2] mb-1" data-task-name></h3>
+              <p class="text-gray-700 text-sm mb-1" data-task-subject></p>
+              <p class="text-gray-600 text-xs" data-task-datetime></p>
+            </div>
+            <div class="mt-3 md:mt-0 flex space-x-2">
+              <button class="bg-green-500 text-white px-3 py-1 rounded-md text-sm hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500" data-mark-complete-button>
+                Mark Complete
+              </button>
+              <button class="bg-red-500 text-white px-3 py-1 rounded-md text-sm hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500" data-delete-task-button>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+ <!-- Footer -->
+  <footer class="bg-[#0a66c2] text-white p-6 text-center shadow-inner mt-auto">
+    <div class="container mx-auto">
+      <p>&copy; <span id="currentyear"></span> Nyantakyi Francis, Ashanti Region - Ghana</p>
+      <p id="lastModified" class="mt-2 text-sm"></p>
+      <div class="flex justify-center space-x-6 mt-4">
+        <a href="#" class="hover:text-[#f39c12] transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-[#f39c12] transition-colors">Terms of Service</a>
+        <a href="references.html" class="hover:text-[#f39c12] transition-colors">References</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Link to external JavaScript file -->
+  <script src="scripts/index.js"></script>
+</body>
+</html>
